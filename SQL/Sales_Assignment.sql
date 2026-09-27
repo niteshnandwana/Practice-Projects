@@ -1,0 +1,72 @@
+CREATE TABLE customers (
+    c_id INTEGER PRIMARY KEY,
+    c_name TEXT,
+    c_location TEXT,
+    c_phoneno TEXT
+);
+
+CREATE TABLE products (
+    p_code INTEGER PRIMARY KEY,
+    p_name TEXT,
+    price NUMERIC,
+    stock INTEGER,
+    category TEXT
+);	
+
+CREATE TABLE sales (
+    order_date TEXT,
+    order_no TEXT,
+    c_id INTEGER,
+    c_name TEXT,
+    s_code INTEGER,
+    p_name TEXT,
+    qty INTEGER,
+    price NUMERIC,
+    PRIMARY KEY (order_no, s_code),
+    FOREIGN KEY (c_id) REFERENCES customers(c_id),
+    FOREIGN KEY (s_code) REFERENCES products(p_code)
+);
+
+SELECT COUNT(*) FROM products;
+
+INSERT INTO sales
+    (order_date, order_no, c_id, c_name, s_code, p_name, qty, price)
+VALUES
+    ('2016-07-24', 'HM06', 9212, 'Jessica', 11, 'pencil', 3, 30);
+
+INSERT INTO sales
+    (order_date, order_no, c_id, c_name, s_code, p_name, qty, price)
+VALUES
+    ('2016-10-19', 'HM09', 3921, 'Mukesh', 17, 'biscuits', 10, 600),
+    ('2016-10-30', 'HM10', 9875, 'Stephen', 2, 'cornoto', 10, 500),
+    ('2018-04-12', 'HM03', 1212, 'Oliver', 20, 'kiwi', 3, 420),
+    ('2018-05-02', 'HM05', 1910, 'Mohan', 20, 'kiwi', 2, 280),
+    ('2018-09-20', 'HM08', 5334, 'Chirsty', 16, 'chocolate', 2, 50),
+    ('2019-01-11', 'HM07', 1246, 'Vignesh', 19, 'apple', 5, 600),
+    ('2019-03-15', 'HM01', 1910, 'Mohan', 5, 'mayanoise', 4, 360),
+    ('2021-02-10', 'HM04', 1111, 'Nisha', 25, 'conditioner', 5, 1000),
+    ('2021-02-12', 'HM02', 2123, 'Biyush', 3, 'Pen', 2, 20);
+
+SELECT COUNT(*) FROM sales;
+
+SELECT
+    order_no AS order_id,
+    c_id AS customer_id,
+    order_date,
+    price,
+    qty AS quantity
+FROM sales;
+
+
+
+SELECT *
+FROM products
+WHERE category = 'Stationary';
+
+SELECT DISTINCT category
+FROM products;
+
+
+SELECT *
+FROM products
+ORDER BY price DESC;
