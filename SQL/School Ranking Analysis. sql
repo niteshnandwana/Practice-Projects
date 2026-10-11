@@ -1,0 +1,36 @@
+CREATE TABLE students(student_id INTEGER NOT NULL PRIMARY KEY,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL,
+class INTEGER,
+age INTEGER);
+
+CREATE TABLE marksheet (score INTEGER,
+year INTEGER,
+ranking INTEGER,
+class INTEGER,
+student_id);
+
+select student_id, first_name
+from students
+where age >= 16
+AND last_name = 'kumar';
+
+
+SELECT *
+FROM marksheet
+WHERE score BETWEEN 800 AND 1000;
+
+
+SELECT *,
+score + 5 AS new_score
+FROM marksheet;
+
+
+SELECT *
+FROM marksheet
+ORDER BY score DESC;
+
+
+SELECT *
+FROM students
+WHERE first_name LIKE 'a%';
